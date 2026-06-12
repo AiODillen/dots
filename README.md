@@ -13,7 +13,6 @@ flake.nix                       # entry point, defines the two configurations
 modules/
   common.nix                    # shared base: boot, networking, audio, fonts, user account
   gaming.nix                    # Steam, Proton/Wine, gamemode, GPU 32-bit support
-  nvidia.nix                    # optional, not imported by default - see below
 hosts/
   kde/configuration.nix         # KDE Plasma + SDDM
   kde/hardware-configuration.nix
@@ -53,13 +52,6 @@ sudo nixos-rebuild switch --flake .#kde
 # or
 sudo nixos-rebuild switch --flake .#hyprland
 ```
-
-## NVIDIA GPUs
-
-If your machine has an NVIDIA card, add `./modules/nvidia.nix` to the
-`modules` list for that host in `flake.nix` and set
-`services.xserver.videoDrivers = [ "nvidia" ]` accordingly (already included
-in that module).
 
 ## Extending
 
