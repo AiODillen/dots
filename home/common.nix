@@ -8,6 +8,13 @@
 
   programs.home-manager.enable = true;
 
+  # Catppuccin theme used across supported apps (gtk, qt, kitty, waybar, fzf, ...).
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
+  };
+
   programs.git = {
     enable = true;
     userName = "Your Name";

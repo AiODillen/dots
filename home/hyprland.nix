@@ -3,6 +3,10 @@
 {
   imports = [ ./common.nix ];
 
+  # Catppuccin theming for GTK and Qt apps (Firefox, file pickers, etc.).
+  gtk.enable = true;
+  qt.enable = true;
+
   home.packages = with pkgs; [
     swww
     wl-clipboard
@@ -39,14 +43,26 @@
         gaps_in = 4;
         gaps_out = 8;
         border_size = 2;
-        "col.active_border" = "rgba(89b4faee)";
-        "col.inactive_border" = "rgba(595959aa)";
+        # Catppuccin Mocha: mauve / surface2
+        "col.active_border" = "rgba(cba6f7ee)";
+        "col.inactive_border" = "rgba(585b70aa)";
         layout = "dwindle";
       };
 
       decoration = {
         rounding = 8;
         blur.enabled = true;
+        shadow = {
+          # Catppuccin Mocha: crust
+          color = "rgba(11111bee)";
+        };
+      };
+
+      misc = {
+        # Catppuccin Mocha: base
+        background_color = "rgb(1e1e2e)";
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
       };
 
       bind = [
@@ -83,7 +99,55 @@
     };
   };
 
-  programs.wofi.enable = true;
+  programs.wofi = {
+    enable = true;
+    settings = {
+      width = 600;
+      height = 350;
+      location = "center";
+      show = "drun";
+      prompt = "Search...";
+      allow_markup = true;
+    };
+    style = ''
+      window {
+        margin: 0px;
+        border: 2px solid #cba6f7;
+        border-radius: 12px;
+        background-color: #1e1e2e;
+        font-family: "JetBrainsMono Nerd Font";
+        font-size: 14px;
+      }
+
+      #input {
+        margin: 8px;
+        border: none;
+        border-radius: 8px;
+        color: #cdd6f4;
+        background-color: #313244;
+      }
+
+      #inner-box, #outer-box, #scroll {
+        margin: 4px;
+        border: none;
+        background-color: #1e1e2e;
+      }
+
+      #text {
+        margin: 4px;
+        color: #cdd6f4;
+      }
+
+      #entry:selected {
+        background-color: #cba6f7;
+        border-radius: 8px;
+      }
+
+      #entry:selected #text {
+        color: #1e1e2e;
+      }
+    '';
+  };
 
   programs.waybar = {
     enable = true;

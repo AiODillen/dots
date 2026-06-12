@@ -53,6 +53,19 @@ sudo nixos-rebuild switch --flake .#kde
 sudo nixos-rebuild switch --flake .#hyprland
 ```
 
+## Theming
+
+Both profiles use the Catppuccin **Mocha** flavor with the **Mauve** accent
+(configured globally in `home/common.nix` via the
+[catppuccin/nix](https://github.com/catppuccin/nix) Home Manager module).
+
+- **Hyprland**: window borders, GTK/Qt apps, kitty, waybar and wofi are all
+  themed automatically.
+- **KDE**: a "Catppuccin Mocha Mauve" Plasma color scheme and Konsole color
+  scheme are installed, but need to be selected once:
+  - System Settings -> Appearance -> Colors -> "Catppuccin Mocha Mauve"
+  - Konsole -> Settings -> Edit Current Profile -> Appearance -> "Catppuccin Mocha Mauve"
+
 ## Extending
 
 - For a fully declarative Plasma setup (panels, shortcuts, themes), consider

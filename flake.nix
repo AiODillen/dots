@@ -8,9 +8,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, catppuccin, ... }:
     let
       system = "x86_64-linux";
 
@@ -31,6 +36,7 @@
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "hm-bak";
               home-manager.extraSpecialArgs = { inherit username; };
+              home-manager.sharedModules = [ catppuccin.homeManagerModules.catppuccin ];
               home-manager.users.${username} = import homeModule;
             }
           ];
